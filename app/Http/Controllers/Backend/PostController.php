@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
@@ -36,9 +37,21 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        // Save
+        $post = Post::create([
+            'user_id' => auth()->user()->id,
+        ] + $request->all());
+
+        // Manage the image
+        if ($request->file('file')){
+            $post->image = $request->file('file')->store('posts', 'public');
+            $post->save();
+        }
+
+        // Return
+        return back()->with('status', 'Creado con éxito');
     }
 
     /**
