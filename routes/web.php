@@ -14,10 +14,12 @@ use App\Http\Controllers\PageController;
 |
 */
 
-// Route::get('/', 'PageController@posts');
-// Route::get('blog/{post}', 'PageController@post')->name('post');
-Route::get('/', [PageController::class, 'posts']);
-Route::get('blog/{post}', [PageController::class, 'post'])->name('post');
+// Route::get('/', [PageController::class, 'posts']);
+// Route::get('/blog/{post}', [PageController::class, 'post'])->name('post');
+
+Route::get('/', 'App\Http\Controllers\PageController@posts');
+Route::get('/blog/{post}', 'App\Http\Controllers\PageController@post')->name('post');
+
 
 Auth::routes();
 
