@@ -29,4 +29,10 @@ class Post extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    // get_excerpt Getting the extract
+    public function getGetExcerptAttribute($key)
+    {
+        return substr($this->body, 0, 140);
+    }
 }
