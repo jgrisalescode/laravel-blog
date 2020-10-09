@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', 'PageController@posts');
+// Route::get('blog/{post}', 'PageController@post')->name('post');
+Route::get('/', [PageController::class, 'posts']);
+Route::get('blog/{post}', [PageController::class, 'post'])->name('post');
 
 Auth::routes();
 
