@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\Backend\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +15,14 @@ use App\Http\Controllers\PageController;
 |
 */
 
-// Route::get('/', [PageController::class, 'posts']);
-// Route::get('/blog/{post}', [PageController::class, 'post'])->name('post');
+// Routing in Laravel 7
+// Route::get('/', 'PageController@posts');
+// Route::get('/blog/{post}', 'PageController@post')->name('post');
 
-Route::get('/', 'App\Http\Controllers\PageController@posts');
-Route::get('/blog/{post}', 'App\Http\Controllers\PageController@post')->name('post');
-
+// New routing in Laravel 8
+Route::get('/', [PageController::class, 'posts']);
+Route::get('/blog/{post}', [PageController::class, 'post'])->name('post');
+Route::resource('/posts', PostController::class)->middleware('auth')->except('show');
 
 Auth::routes();
 
