@@ -13,9 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form 
-                      action="{{ route('posts.update', $post) }}" 
-                      method="post" 
+                    <form
+                      action="{{ route('posts.update', $post) }}"
+                      method="post"
                       enctype="multipart/form-data"
                     >
                       <div class="form-group">
@@ -32,7 +32,7 @@
                       </div>
                       <div class="form-group">
                         <label for="iframe">Contenido embedido</label>
-                        <textarea name="iframe" rows="6" class="form-control" required>{{ old('iframe', $post->iframe) }}</textarea>
+                        <textarea name="iframe" rows="6" class="form-control">{{ old('iframe', $post->iframe) }}</textarea>
                       </div>
                       <div class="form-group">
                         @csrf
