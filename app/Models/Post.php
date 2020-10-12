@@ -39,8 +39,19 @@ class Post extends Model
     }
 
     // get_excerpt Getting the extract
-    public function getGetExcerptAttribute($key)
+    public function getGetExcerptAttribute()
     {
         return substr($this->body, 0, 140);
+    }
+
+    // Is the {{ $post->get_image }} wrote in posts.blade.php line 11
+    public function getGetImageAttribute()
+    {
+        if($this->image){
+            // folder storage is a private folder of the framework, so we need to ask access
+            // whit comand in console: php artisan storage:link
+            // Its create a symbolic link in our public folder
+            return url("storage/$this->image");
+        }
     }
 }
